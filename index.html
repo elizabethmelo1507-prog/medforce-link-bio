@@ -27,7 +27,7 @@
       --muted:       rgba(255,255,255,0.45);
       --muted2:      rgba(255,255,255,0.65);
       --border:      rgba(255,255,255,0.07);
-      --border-blue: rgba(26,108,255,0.22);
+      --red:         #ef4444;
     }
 
     body {
@@ -43,7 +43,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Fundo radial ── */
     body::before {
       content: '';
       position: fixed;
@@ -66,16 +65,13 @@
       padding: 0 20px;
     }
 
-    /* ════════════════════════════
-       HERO — Logo + tagline + CTA
-    ════════════════════════════ */
+    /* ── HERO ── */
     .hero {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 52px 0 40px;
-      gap: 0;
     }
 
     .logo-wrap {
@@ -101,6 +97,8 @@
       color: var(--white);
       font-style: italic;
       margin-bottom: 6px;
+      cursor: default;
+      user-select: none;
     }
 
     .brand-name span { color: var(--blue-bright); }
@@ -124,7 +122,6 @@
       margin-bottom: 28px;
     }
 
-    /* CTA principal */
     .cta-btn {
       display: flex;
       align-items: center;
@@ -144,24 +141,11 @@
       transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
     }
 
-    .cta-btn:hover {
-      filter: brightness(1.1);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 36px rgba(14,165,160,0.5);
-    }
-
+    .cta-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 36px rgba(14,165,160,0.5); }
     .cta-btn:active { transform: translateY(0); }
+    .cta-btn svg { width: 18px; height: 18px; fill: var(--white); flex-shrink: 0; }
 
-    .cta-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--white);
-      flex-shrink: 0;
-    }
-
-    /* ════════════════════════════
-       DIVISOR DE SEÇÃO
-    ════════════════════════════ */
+    /* ── SEÇÃO ── */
     .section-divider {
       width: 100%;
       display: flex;
@@ -179,17 +163,11 @@
       white-space: nowrap;
     }
 
-    .section-divider::before,
-    .section-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
+    .section-divider::before, .section-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
     }
 
-    /* ════════════════════════════
-       CARD DESTAQUE — IMCAS
-    ════════════════════════════ */
+    /* ── CARD FEATURED ── */
     .featured-card {
       width: 100%;
       border-radius: 14px;
@@ -204,362 +182,696 @@
 
     .featured-card::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(26,108,255,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    /* Estrela decorativa */
     .star-deco {
-      position: absolute;
-      right: 20px;
-      top: 50%;
+      position: absolute; right: 20px; top: 50%;
       transform: translateY(-50%);
-      width: 80px;
-      height: 80px;
-      opacity: 0.18;
+      width: 80px; height: 80px; opacity: 0.18;
     }
 
-    .featured-label {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--blue-bright);
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .featured-title {
-      font-size: 1.05rem;
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--white);
-      line-height: 1.3;
-      margin-bottom: 6px;
-      position: relative;
-      z-index: 1;
-      font-style: italic;
-      max-width: 220px;
-    }
-
-    .featured-sub {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
-    }
+    .featured-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue-bright); margin-bottom: 10px; position: relative; z-index: 1; }
+    .featured-title { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); line-height: 1.3; margin-bottom: 6px; position: relative; z-index: 1; font-style: italic; max-width: 220px; }
+    .featured-sub { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; position: relative; z-index: 1; }
 
     .featured-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      border-radius: 8px;
-      background: var(--white);
-      color: #0d1f40;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      position: relative;
-      z-index: 1;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 8px; background: var(--white);
+      color: #0d1f40; font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.18em; text-transform: uppercase; position: relative; z-index: 1;
       transition: background 0.2s, transform 0.15s;
     }
+    .featured-cta:hover { background: #e8f0ff; transform: translateY(-1px); }
 
-    .featured-cta:hover {
-      background: #e8f0ff;
-      transform: translateY(-1px);
-    }
-
-    /* ════════════════════════════
-       BOTÕES DE CONEXÃO
-    ════════════════════════════ */
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 100%;
-    }
+    /* ── BOTÕES CONEXÃO ── */
+    .links { display: flex; flex-direction: column; gap: 10px; width: 100%; }
 
     .link-btn {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 18px;
-      border-radius: 12px;
-      background: var(--navy-card);
-      border: 1px solid var(--border);
-      color: var(--white);
-      text-decoration: none;
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 18px; border-radius: 12px;
+      background: var(--navy-card); border: 1px solid var(--border);
+      color: var(--white); text-decoration: none;
       transition: background 0.2s, border-color 0.2s, transform 0.15s;
     }
 
-    .link-btn:hover {
-      background: var(--navy-hover);
-      border-color: rgba(255,255,255,0.13);
-      transform: translateY(-2px);
-    }
-
+    .link-btn:hover { background: var(--navy-hover); border-color: rgba(255,255,255,0.13); transform: translateY(-2px); }
     .link-btn:active { transform: translateY(0); }
 
     .link-icon-wrap {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--navy-card2);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: border-color 0.2s;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--navy-card2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
 
-    .link-btn:hover .link-icon-wrap {
-      border-color: rgba(255,255,255,0.18);
-    }
+    .link-icon-wrap svg { width: 18px; height: 18px; fill: var(--muted2); }
 
-    .link-icon-wrap svg {
-      width: 18px;
-      height: 18px;
-      fill: var(--muted2);
-    }
-
-    .link-text {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      flex: 1;
-    }
-
-    .link-title {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-
-    .link-status {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.63rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .link-status .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #22c55e;
-      flex-shrink: 0;
-      box-shadow: 0 0 6px rgba(34,197,94,0.6);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
+    .link-text { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .link-title { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); }
+    .link-status { display: flex; align-items: center; gap: 5px; font-size: 0.63rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .link-status .dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; box-shadow: 0 0 6px rgba(34,197,94,0.6); animation: pulse 2s ease-in-out infinite; }
     .link-status.green { color: #22c55e; }
     .link-status.muted { color: var(--muted); }
+    .link-arrow { color: var(--muted); font-size: 1.1rem; flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
+    .link-btn:hover .link-arrow { color: var(--muted2); transform: translateX(3px); }
 
-    .link-arrow {
-      color: var(--muted);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      transition: color 0.2s, transform 0.2s;
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-    .link-btn:hover .link-arrow {
-      color: var(--muted2);
-      transform: translateX(3px);
-    }
-
-    /* ════════════════════════════
-       GRID DE LOCALIZAÇÕES
-    ════════════════════════════ */
-    .locations-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      width: 100%;
-    }
+    /* ── LOCALIZAÇÕES ── */
+    .locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
 
     .loc-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding: 24px 16px 20px;
-      border-radius: 12px;
-      background: var(--navy-card);
-      border: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--white);
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      padding: 24px 16px 20px; border-radius: 12px;
+      background: var(--navy-card); border: 1px solid var(--border);
+      text-decoration: none; color: var(--white);
       transition: background 0.2s, border-color 0.2s, transform 0.15s;
     }
 
-    .loc-card:hover {
-      background: var(--navy-hover);
-      border-color: rgba(255,255,255,0.13);
-      transform: translateY(-2px);
+    .loc-card:hover { background: var(--navy-hover); border-color: rgba(255,255,255,0.13); transform: translateY(-2px); }
+
+    .loc-icon-wrap { width: 44px; height: 44px; border-radius: 50%; background: var(--navy-card2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+    .loc-icon-wrap svg { width: 20px; height: 20px; fill: var(--muted2); }
+    .loc-label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted2); text-align: center; line-height: 1.5; }
+
+    /* ── RODAPÉ ── */
+    .footer { margin-top: 44px; text-align: center; }
+    .footer p { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
+    .footer a { color: var(--blue-bright); text-decoration: none; font-weight: 700; }
+
+    /* ══════════════════════════════════════
+       MODAL SENHA
+    ══════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
     }
 
-    .loc-icon-wrap {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--navy-card2);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-box {
+      background: #0d1829;
+      border: 1px solid rgba(26,108,255,0.3);
+      border-radius: 16px;
+      padding: 32px 28px;
+      width: 90%;
+      max-width: 340px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
     }
 
-    .loc-icon-wrap svg {
-      width: 20px;
-      height: 20px;
-      fill: var(--muted2);
-    }
-
-    .loc-label {
-      font-size: 0.6rem;
+    .modal-box h3 {
+      font-size: 0.75rem;
       font-weight: 800;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--muted2);
-      text-align: center;
-      line-height: 1.5;
+      color: var(--white);
+      margin-bottom: 6px;
     }
 
-    /* ════════════════════════════
-       RODAPÉ
-    ════════════════════════════ */
-    .footer {
-      margin-top: 44px;
-      text-align: center;
-    }
-
-    .footer p {
-      font-size: 0.62rem;
+    .modal-box p {
+      font-size: 0.72rem;
       color: var(--muted);
-      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      line-height: 1.6;
     }
 
-    .footer a {
-      color: var(--blue-bright);
-      text-decoration: none;
+    .modal-input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 8px;
+    }
+
+    .modal-input:focus { border-color: var(--blue); }
+
+    .modal-error {
+      font-size: 0.65rem;
+      color: var(--red);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      min-height: 18px;
+      margin-bottom: 16px;
+    }
+
+    .modal-actions { display: flex; gap: 10px; }
+
+    .btn {
+      flex: 1; padding: 11px 16px; border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      cursor: pointer; border: none; transition: filter 0.2s, transform 0.15s;
+    }
+
+    .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-ghost { background: rgba(255,255,255,0.07); color: var(--muted2); border: 1px solid rgba(255,255,255,0.1); }
+    .btn-danger { background: var(--red); color: var(--white); }
+    .btn-sm { font-size: 0.6rem; padding: 7px 12px; flex: none; }
+
+    /* ══════════════════════════════════════
+       PAINEL ADMIN
+    ══════════════════════════════════════ */
+    .admin-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(4,10,22,0.97);
+      backdrop-filter: blur(12px);
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+      overflow-y: auto;
+    }
+
+    .admin-overlay.open { opacity: 1; pointer-events: all; }
+
+    .admin-header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(4,10,22,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .admin-header h2 {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white);
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .admin-header h2 span { color: var(--blue-bright); }
+
+    .admin-body { flex: 1; padding: 24px; max-width: 540px; margin: 0 auto; width: 100%; }
+
+    .admin-section-title {
+      font-size: 0.6rem;
       font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin: 24px 0 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .admin-section-title::after { content: ''; flex: 1; height: 1px; background: rgba(26,108,255,0.2); }
+    .admin-section-title:first-child { margin-top: 0; }
+
+    /* Lista de links no admin */
+    .admin-link-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .admin-link-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border-radius: 10px;
+      background: var(--navy-card); border: 1px solid var(--border);
+    }
+
+    .admin-link-type {
+      font-size: 0.55rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .type-featured { background: rgba(26,108,255,0.2); color: var(--blue-bright); }
+    .type-whatsapp { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .type-regular  { background: rgba(255,255,255,0.07); color: var(--muted2); }
+    .type-location { background: rgba(255,165,0,0.12); color: #f59e0b; }
+
+    .admin-link-info { flex: 1; min-width: 0; }
+    .admin-link-info strong { display: block; font-size: 0.75rem; font-weight: 700; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .admin-link-info small { font-size: 0.62rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+
+    .admin-link-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    /* Formulário de adicionar/editar */
+    .admin-form { display: flex; flex-direction: column; gap: 12px; }
+
+    .form-row { display: grid; gap: 10px; }
+    .form-row.two { grid-template-columns: 1fr 1fr; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-label {
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    }
+
+    .form-input, .form-select {
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .form-input:focus, .form-select:focus { border-color: var(--blue); }
+    .form-select option { background: #0d1829; color: var(--white); }
+
+    .form-actions { display: flex; gap: 10px; margin-top: 4px; }
+
+    /* Badge de sucesso */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: #166534; color: #bbf7d0; border: 1px solid #22c55e;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      z-index: 2000; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .toast.show { opacity: 1; }
+
+    /* Seção vazia */
+    .empty-state {
+      text-align: center; padding: 20px;
+      font-size: 0.7rem; color: var(--muted);
+      border: 1px dashed rgba(255,255,255,0.08);
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- ── HERO ── -->
+  <!-- ══ PÁGINA PÚBLICA ══ -->
+  <div class="container">
     <div class="hero">
       <div class="logo-wrap">
         <img src="logo .webp" alt="MedForce" />
       </div>
-
-      <h1 class="brand-name">Med<span>Force</span></h1>
+      <h1 class="brand-name" id="brandName">Med<span>Force</span></h1>
       <p class="brand-sub">Gestão Médica Estratégica</p>
-
-      <p class="hero-desc">
-        Nosso propósito é garantir o sucesso da carreira médica. Somos a Força para sustentar o seu sucesso.
-      </p>
-
-      <a href="https://api.whatsapp.com/send?phone=5511991901356&text=Ol%C3%A1%2C%20vim%20do%20link%20da%20bio.%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="cta-btn">
+      <p class="hero-desc">Nosso propósito é garantir o sucesso da carreira médica. Somos a Força para sustentar o seu sucesso.</p>
+      <a href="https://api.whatsapp.com/send?phone=5511991901356&text=Ol%C3%A1%2C%20vim%20do%20link%20da%20bio.%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="cta-btn" id="ctaBtn">
         <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         Falar Agora
       </a>
     </div>
 
-    <!-- ── DESTAQUE 2025 ── -->
-    <div class="section-divider"><span>Destaque 2025</span></div>
+    <!-- Links renderizados por JS -->
+    <div id="publicLinks"></div>
 
-    <a href="https://mkt.imcashighlights.com.br/" target="_blank" class="featured-card">
-      <!-- Estrela decorativa -->
-      <svg class="star-deco" viewBox="0 0 80 80" fill="none">
-        <path d="M40 5 L47 30 L73 30 L52 47 L59 72 L40 56 L21 72 L28 47 L7 30 L33 30 Z" fill="white"/>
-      </svg>
-
-      <p class="featured-label">Paris Highlights</p>
-      <h2 class="featured-title">Relatório IMCAS Paris 2025</h2>
-      <p class="featured-sub">Baixe o material exclusivo</p>
-      <span class="featured-cta">Acessar Agora</span>
-    </a>
-
-    <!-- ── CONEXÃO DIRETA ── -->
-    <div class="section-divider"><span>Conexão Direta</span></div>
-
-    <div class="links">
-
-      <a href="https://api.whatsapp.com/send?phone=5511991901356&text=Ol%C3%A1%2C%20vim%20do%20link%20da%20bio.%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="link-btn">
-        <div class="link-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </div>
-        <div class="link-text">
-          <span class="link-title">Agende pelo WhatsApp</span>
-          <span class="link-status green"><span class="dot"></span>Atendimento Ativo</span>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-
-      <a href="https://medforce.com.br/" target="_blank" class="link-btn">
-        <div class="link-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-        </div>
-        <div class="link-text">
-          <span class="link-title">Site Oficial MedForce</span>
-          <span class="link-status muted">medforce.com.br</span>
-        </div>
-        <span class="link-arrow">›</span>
-      </a>
-
-    </div>
-
-    <!-- ── UNIDADES FÍSICAS ── -->
-    <div class="section-divider"><span>Unidades Físicas</span></div>
-
-    <div class="locations-grid">
-
-      <a href="https://www.google.com/maps/dir//R.+Humberto+I,+50+-+Vila+Mariana,+S%C3%A3o+Paulo+-+SP,+04018-030/@-23.0093382,-46.4761611,427285m/data=!3m2!1e3!5s0x98c0023ae64941:0x4d69340f663facc5!4m8!4m7!1m0!1m5!1m1!1s0x94ce598fdab50407:0xe57680b6a148f1e7!2m2!1d-46.6431103!2d-23.5804294?entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="loc-card">
-        <div class="loc-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <span class="loc-label">Localização<br>São Paulo — SP</span>
-      </a>
-
-      <a href="https://www.google.com/maps/search/Calle+Nu%C3%B1ez+de+Balboa,+Num+56+Planta+SM,+Puerta+2+-+28001+Madrid/@40.4285842,-3.6849683,587m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="loc-card">
-        <div class="loc-icon-wrap">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
-        <span class="loc-label">Localização<br>Madrid — ES</span>
-      </a>
-
-    </div>
-
-    <!-- ── RODAPÉ ── -->
     <div class="footer">
       <p>© 2026 MedForce · Todos os direitos reservados</p>
       <p style="margin-top:6px;"><a href="https://medforce.com.br/" target="_blank">medforce.com.br</a></p>
     </div>
-
   </div>
+
+  <!-- ══ MODAL SENHA ══ -->
+  <div class="modal-overlay" id="pwModal">
+    <div class="modal-box">
+      <h3>Área Restrita</h3>
+      <p>Digite a senha para acessar o painel de configurações.</p>
+      <input type="password" class="modal-input" id="pwInput" placeholder="••••••••••••" />
+      <div class="modal-error" id="pwError"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closePwModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="checkPassword()">Entrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAINEL ADMIN ══ -->
+  <div class="admin-overlay" id="adminPanel">
+
+    <div class="admin-header">
+      <h2>⚙ Painel de <span>Configurações</span></h2>
+      <button class="btn btn-ghost btn-sm" onclick="closeAdmin()">✕ Fechar</button>
+    </div>
+
+    <div class="admin-body">
+
+      <!-- Lista de links existentes -->
+      <div class="admin-section-title">Links ativos</div>
+      <div class="admin-link-list" id="adminLinkList"></div>
+
+      <!-- Formulário adicionar/editar -->
+      <div class="admin-section-title" id="formTitle">Adicionar novo link</div>
+      <div class="admin-form" id="linkForm">
+
+        <div class="form-row two">
+          <div class="form-group">
+            <label class="form-label">Tipo</label>
+            <select class="form-select" id="fType" onchange="onTypeChange()">
+              <option value="featured">Destaque (card grande)</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="regular">Normal</option>
+              <option value="location">Localização</option>
+            </select>
+          </div>
+          <div class="form-group" id="fBadgeGroup">
+            <label class="form-label">Label / Badge</label>
+            <input type="text" class="form-input" id="fBadge" placeholder="Ex: Paris Highlights" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Título</label>
+          <input type="text" class="form-input" id="fTitle" placeholder="Nome do link" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subtítulo / Descrição</label>
+          <input type="text" class="form-input" id="fSubtitle" placeholder="Texto secundário" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">URL</label>
+          <input type="url" class="form-input" id="fUrl" placeholder="https://" />
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-ghost" onclick="cancelEdit()" id="cancelBtn" style="display:none;">Cancelar edição</button>
+          <button class="btn btn-primary" onclick="saveLink()">Salvar Link</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ══════════════════════════════════════
+       DADOS PADRÃO
+    ══════════════════════════════════════ */
+    const DEFAULT_LINKS = [
+      {
+        id: 1, type: 'featured',
+        badge: 'Paris Highlights',
+        title: 'Relatório IMCAS Paris 2025',
+        subtitle: 'Baixe o material exclusivo',
+        url: 'https://mkt.imcashighlights.com.br/'
+      },
+      {
+        id: 2, type: 'whatsapp',
+        badge: '',
+        title: 'Agende pelo WhatsApp',
+        subtitle: 'Atendimento Ativo',
+        url: 'https://api.whatsapp.com/send?phone=5511991901356&text=Ol%C3%A1%2C%20vim%20do%20link%20da%20bio.%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es.'
+      },
+      {
+        id: 3, type: 'regular',
+        badge: '',
+        title: 'Site Oficial MedForce',
+        subtitle: 'medforce.com.br',
+        url: 'https://medforce.com.br/'
+      },
+      {
+        id: 4, type: 'location',
+        badge: '',
+        title: 'São Paulo — SP',
+        subtitle: 'R. Humberto I, 50 — Vila Mariana',
+        url: 'https://www.google.com/maps/dir//R.+Humberto+I,+50+-+Vila+Mariana,+S%C3%A3o+Paulo+-+SP,+04018-030/@-23.0093382,-46.4761611,427285m/data=!3m2!1e3!5s0x98c0023ae64941:0x4d69340f663facc5!4m8!4m7!1m0!1m5!1m1!1s0x94ce598fdab50407:0xe57680b6a148f1e7!2m2!1d-46.6431103!2d-23.5804294?entry=ttu'
+      },
+      {
+        id: 5, type: 'location',
+        badge: '',
+        title: 'Madrid — ES',
+        subtitle: 'Calle Nuñez de Balboa, 56',
+        url: 'https://www.google.com/maps/search/Calle+Nu%C3%B1ez+de+Balboa,+Num+56+Planta+SM,+Puerta+2+-+28001+Madrid/@40.4285842,-3.6849683,587m'
+      }
+    ];
+
+    const PASSWORD = 'medforce2025';
+
+    /* ── Storage ── */
+    function getLinks() {
+      try {
+        const s = localStorage.getItem('mf_links');
+        return s ? JSON.parse(s) : JSON.parse(JSON.stringify(DEFAULT_LINKS));
+      } catch { return JSON.parse(JSON.stringify(DEFAULT_LINKS)); }
+    }
+
+    function saveLinks(links) {
+      localStorage.setItem('mf_links', JSON.stringify(links));
+    }
+
+    function nextId(links) {
+      return links.length ? Math.max(...links.map(l => l.id)) + 1 : 1;
+    }
+
+    /* ══════════════════════════════════════
+       RENDER PÁGINA PÚBLICA
+    ══════════════════════════════════════ */
+    const SVG_WA   = `<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+    const SVG_GLOB = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+    const SVG_PIN  = `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>`;
+    const SVG_STAR = `<svg class="star-deco" viewBox="0 0 80 80" fill="none"><path d="M40 5 L47 30 L73 30 L52 47 L59 72 L40 56 L21 72 L28 47 L7 30 L33 30 Z" fill="white"/></svg>`;
+
+    function renderPublic() {
+      const links = getLinks();
+      const featured  = links.filter(l => l.type === 'featured');
+      const connexion = links.filter(l => l.type === 'whatsapp' || l.type === 'regular');
+      const locations = links.filter(l => l.type === 'location');
+
+      // atualiza o href do CTA principal com o primeiro WhatsApp encontrado
+      const waLink = links.find(l => l.type === 'whatsapp');
+      if (waLink) document.getElementById('ctaBtn').href = waLink.url;
+
+      let html = '';
+
+      if (featured.length) {
+        html += `<div class="section-divider"><span>Destaque 2025</span></div>`;
+        featured.forEach(l => {
+          html += `
+            <a href="${l.url}" target="_blank" class="featured-card">
+              ${SVG_STAR}
+              <p class="featured-label">${l.badge || 'Destaque'}</p>
+              <h2 class="featured-title">${l.title}</h2>
+              <p class="featured-sub">${l.subtitle}</p>
+              <span class="featured-cta">Acessar Agora</span>
+            </a>`;
+        });
+      }
+
+      if (connexion.length) {
+        html += `<div class="section-divider"><span>Conexão Direta</span></div><div class="links">`;
+        connexion.forEach(l => {
+          const icon   = l.type === 'whatsapp' ? SVG_WA : SVG_GLOB;
+          const status = l.type === 'whatsapp'
+            ? `<span class="link-status green"><span class="dot"></span>${l.subtitle}</span>`
+            : `<span class="link-status muted">${l.subtitle}</span>`;
+          html += `
+            <a href="${l.url}" target="_blank" class="link-btn">
+              <div class="link-icon-wrap">${icon}</div>
+              <div class="link-text">
+                <span class="link-title">${l.title}</span>
+                ${status}
+              </div>
+              <span class="link-arrow">›</span>
+            </a>`;
+        });
+        html += `</div>`;
+      }
+
+      if (locations.length) {
+        html += `<div class="section-divider"><span>Unidades Físicas</span></div><div class="locations-grid">`;
+        locations.forEach(l => {
+          html += `
+            <a href="${l.url}" target="_blank" class="loc-card">
+              <div class="loc-icon-wrap">${SVG_PIN}</div>
+              <span class="loc-label">Localização<br>${l.title}</span>
+            </a>`;
+        });
+        html += `</div>`;
+      }
+
+      document.getElementById('publicLinks').innerHTML = html;
+    }
+
+    /* ══════════════════════════════════════
+       RENDER ADMIN — lista de links
+    ══════════════════════════════════════ */
+    const TYPE_LABELS = { featured: 'Destaque', whatsapp: 'WhatsApp', regular: 'Normal', location: 'Localização' };
+    const TYPE_CLASS  = { featured: 'type-featured', whatsapp: 'type-whatsapp', regular: 'type-regular', location: 'type-location' };
+
+    function renderAdminList() {
+      const links = getLinks();
+      const el = document.getElementById('adminLinkList');
+
+      if (!links.length) {
+        el.innerHTML = `<div class="empty-state">Nenhum link cadastrado ainda.</div>`;
+        return;
+      }
+
+      el.innerHTML = links.map(l => `
+        <div class="admin-link-item" id="item-${l.id}">
+          <span class="admin-link-type ${TYPE_CLASS[l.type]}">${TYPE_LABELS[l.type]}</span>
+          <div class="admin-link-info">
+            <strong>${l.title}</strong>
+            <small>${l.url}</small>
+          </div>
+          <div class="admin-link-actions">
+            <button class="btn btn-ghost btn-sm" onclick="editLink(${l.id})">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteLink(${l.id})">✕</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ══════════════════════════════════════
+       MODAL SENHA
+    ══════════════════════════════════════ */
+    let dblClickTimer = null;
+
+    document.getElementById('brandName').addEventListener('dblclick', () => {
+      openPwModal();
+    });
+
+    function openPwModal() {
+      document.getElementById('pwInput').value = '';
+      document.getElementById('pwError').textContent = '';
+      document.getElementById('pwModal').classList.add('open');
+      setTimeout(() => document.getElementById('pwInput').focus(), 100);
+    }
+
+    function closePwModal() {
+      document.getElementById('pwModal').classList.remove('open');
+    }
+
+    document.getElementById('pwInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkPassword();
+      if (e.key === 'Escape') closePwModal();
+    });
+
+    function checkPassword() {
+      const val = document.getElementById('pwInput').value;
+      if (val === PASSWORD) {
+        closePwModal();
+        openAdmin();
+      } else {
+        document.getElementById('pwError').textContent = 'Senha incorreta. Tente novamente.';
+        document.getElementById('pwInput').value = '';
+        document.getElementById('pwInput').focus();
+      }
+    }
+
+    /* ══════════════════════════════════════
+       PAINEL ADMIN
+    ══════════════════════════════════════ */
+    let editingId = null;
+
+    function openAdmin() {
+      cancelEdit();
+      renderAdminList();
+      document.getElementById('adminPanel').classList.add('open');
+    }
+
+    function closeAdmin() {
+      document.getElementById('adminPanel').classList.remove('open');
+      renderPublic();
+    }
+
+    function onTypeChange() {
+      const t = document.getElementById('fType').value;
+      document.getElementById('fBadgeGroup').style.display = t === 'featured' ? '' : 'none';
+    }
+
+    onTypeChange(); // init
+
+    function clearForm() {
+      document.getElementById('fType').value = 'regular';
+      document.getElementById('fBadge').value = '';
+      document.getElementById('fTitle').value = '';
+      document.getElementById('fSubtitle').value = '';
+      document.getElementById('fUrl').value = '';
+      onTypeChange();
+    }
+
+    function cancelEdit() {
+      editingId = null;
+      clearForm();
+      document.getElementById('formTitle').textContent = 'Adicionar novo link';
+      document.getElementById('cancelBtn').style.display = 'none';
+    }
+
+    function editLink(id) {
+      const links = getLinks();
+      const link  = links.find(l => l.id === id);
+      if (!link) return;
+
+      editingId = id;
+      document.getElementById('fType').value    = link.type;
+      document.getElementById('fBadge').value   = link.badge || '';
+      document.getElementById('fTitle').value   = link.title;
+      document.getElementById('fSubtitle').value = link.subtitle;
+      document.getElementById('fUrl').value     = link.url;
+      onTypeChange();
+
+      document.getElementById('formTitle').textContent = 'Editar link';
+      document.getElementById('cancelBtn').style.display = '';
+
+      // scroll para o formulário
+      document.getElementById('linkForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function deleteLink(id) {
+      const links = getLinks().filter(l => l.id !== id);
+      saveLinks(links);
+      renderAdminList();
+      showToast('Link removido!');
+    }
+
+    function saveLink() {
+      const type     = document.getElementById('fType').value;
+      const badge    = document.getElementById('fBadge').value.trim();
+      const title    = document.getElementById('fTitle').value.trim();
+      const subtitle = document.getElementById('fSubtitle').value.trim();
+      const url      = document.getElementById('fUrl').value.trim();
+
+      if (!title) { alert('Informe o título do link.'); return; }
+      if (!url)   { alert('Informe a URL do link.'); return; }
+
+      const links = getLinks();
+
+      if (editingId !== null) {
+        const idx = links.findIndex(l => l.id === editingId);
+        if (idx > -1) links[idx] = { id: editingId, type, badge, title, subtitle, url };
+        showToast('Link atualizado!');
+      } else {
+        links.push({ id: nextId(links), type, badge, title, subtitle, url });
+        showToast('Link adicionado!');
+      }
+
+      saveLinks(links);
+      cancelEdit();
+      renderAdminList();
+    }
+
+    /* ── Toast ── */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = '✓ ' + msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    /* ── Init ── */
+    renderPublic();
+  </script>
 </body>
 </html>
