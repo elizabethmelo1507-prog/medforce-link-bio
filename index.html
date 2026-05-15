@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedForce — Link na Bio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --navy:        #060e1c;
+      --navy-card:   #0b1629;
+      --navy-card2:  #0d1b30;
+      --navy-hover:  #101f38;
+      --blue:        #1a6cff;
+      --blue-bright: #3d87ff;
+      --blue-glow:   rgba(26,108,255,0.3);
+      --blue-dim:    rgba(26,108,255,0.1);
+      --teal:        #0ea5a0;
+      --teal-bright: #14c2bc;
+      --teal-glow:   rgba(14,165,160,0.35);
+      --white:       #ffffff;
+      --muted:       rgba(255,255,255,0.45);
+      --muted2:      rgba(255,255,255,0.65);
+      --border:      rgba(255,255,255,0.07);
+      --border-blue: rgba(26,108,255,0.22);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 64px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Fundo radial ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 45% at 50% 0%, rgba(26,108,255,0.14) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 30% at 15% 70%, rgba(14,165,160,0.07) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    /* ════════════════════════════
+       HERO — Logo + tagline + CTA
+    ════════════════════════════ */
+    .hero {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 52px 0 40px;
+      gap: 0;
+    }
+
+    .logo-wrap {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--navy-card);
+      border: 1.5px solid rgba(26,108,255,0.5);
+      box-shadow: 0 0 28px var(--blue-glow), 0 0 0 5px rgba(26,108,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+    .brand-name {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .brand-name span { color: var(--blue-bright); }
+
+    .brand-sub {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--blue-bright);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-desc {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted2);
+      text-align: center;
+      line-height: 1.75;
+      max-width: 300px;
+      margin-bottom: 28px;
+    }
+
+    /* CTA principal */
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-bright));
+      box-shadow: 0 4px 28px var(--teal-glow);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .cta-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(14,165,160,0.5);
+    }
+
+    .cta-btn:active { transform: translateY(0); }
+
+    .cta-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--white);
+      flex-shrink: 0;
+    }
+
+    /* ════════════════════════════
+       DIVISOR DE SEÇÃO
+    ════════════════════════════ */
+    .section-divider {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 36px 0 16px;
+    }
+
+    .section-divider span {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ════════════════════════════
+       CARD DESTAQUE — IMCAS
+    ════════════════════════════ */
+    .featured-card {
+      width: 100%;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0d1f40 0%, #0f2a58 60%, #0d1f40 100%);
+      border: 1px solid rgba(26,108,255,0.3);
+      padding: 28px 24px 24px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+    }
+
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 80% 50%, rgba(26,108,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Estrela decorativa */
+    .star-deco {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 80px;
+      opacity: 0.18;
+    }
+
+    .featured-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-title {
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+      font-style: italic;
+      max-width: 220px;
+    }
+
+    .featured-sub {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: var(--white);
+      color: #0d1f40;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .featured-cta:hover {
+      background: #e8f0ff;
+      transform: translateY(-1px);
+    }
+
+    /* ════════════════════════════
+       BOTÕES DE CONEXÃO
+    ════════════════════════════ */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .link-btn:hover {
+      background: var(--navy-hover);
+      border-color: rgba(255,255,255,0.13);
+      transform: translateY(-2px);
+    }
+
+    .link-btn:active { transform: translateY(0); }
+
+    .link-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--navy-card2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.2s;
+    }
+
+    .link-btn:hover .link-icon-wrap {
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .link-icon-wrap svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--muted2);
+    }
+
+    .link-text {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .link-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .link-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.63rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .link-status .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      flex-shrink: 0;
+      box-shadow: 0 0 6px rgba(34,197,94,0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .link-status.green { color: #22c55e; }
+    .link-status.muted { color: var(--muted); }
+
+    .link-arrow {
+      color: var(--muted);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .link-btn:hover .link-arrow {
+      color: var(--muted2);
+      transform: translateX(3px);
+    }
+
+    /* ════════════════════════════
+       GRID DE LOCALIZAÇÕES
+    ════════════════════════════ */
+    .locations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .loc-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 16px 20px;
+      border-radius: 12px;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--white);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .loc-card:hover {
+      background: var(--navy-hover);
+      border-color: rgba(255,255,255,0.13);
+      transform: translateY(-2px);
+    }
+
+    .loc-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy-card2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loc-icon-wrap svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--muted2);
+    }
+
+    .loc-label {
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ════════════════════════════
+       RODAPÉ
+    ════════════════════════════ */
+    .footer {
+      margin-top: 44px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .footer a {
+      color: var(--blue-bright);
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="logo-wrap">
+        <img src="logo .webp" alt="MedForce" />
+      </div>
+
+      <h1 class="brand-name">Med<span>Force</span></h1>
+      <p class="brand-sub">Gestão Médica Estratégica</p>
+
+      <p class="hero-desc">
+        Nosso propósito é garantir o sucesso da carreira médica. Somos a Força para sustentar o seu sucesso.
+      </p>
+
+      <a href="https://api.whatsapp.com/send?phone=5511991901356&text=Ol%C3%A1%2C%20vim%20do%20link%20da%20bio.%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="cta-btn">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Falar Agora
+      </a>
+    </div>
+
+    <!-- ── DESTAQUE 2025 ── -->
+    <div class="section-divider"><span>Destaque 2025</span></div>
+
+    <a href="https://mkt.imcashighlights.com.br/" target="_blank" class="featured-card">
+      <!-- Estrela decorativa -->
+      <svg class="star-deco" viewBox="0 0 80 80" fill="none">
+        <path d="M40 5 L47 30 L73 30 L52 47 L59 72 L40 56 L21 72 L28 47 L7 30 L33 30 Z" fill="white"/>
+      </svg>
+
+      <p class="featured-label">Paris Highlights</p>
+      <h2 class="featured-title">Relatório IMCAS Paris 2025</h2>
+      <p class="featured-sub">Baixe o material exclusivo</p>
+      <span class="featured-cta">Acessar Agora</span>
+    </a>
+
+    <!-- ── CONEXÃO DIRETA ── -->
+    <div class="section-divider"><span>Conexão Direta</span></div>
+
+    <div class="links">
+
+      <a href="https://api.whatsapp.com/send?phone=5511991901356&text=Ol%C3%A1%2C%20vim%20do%20link%20da%20bio.%20Gostaria%20de%20saber%20mais%20informa%C3%A7%C3%B5es." target="_blank" class="link-btn">
+        <div class="link-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="link-text">
+          <span class="link-title">Agende pelo WhatsApp</span>
+          <span class="link-status green"><span class="dot"></span>Atendimento Ativo</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+      <a href="https://medforce.com.br/" target="_blank" class="link-btn">
+        <div class="link-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </div>
+        <div class="link-text">
+          <span class="link-title">Site Oficial MedForce</span>
+          <span class="link-status muted">medforce.com.br</span>
+        </div>
+        <span class="link-arrow">›</span>
+      </a>
+
+    </div>
+
+    <!-- ── UNIDADES FÍSICAS ── -->
+    <div class="section-divider"><span>Unidades Físicas</span></div>
+
+    <div class="locations-grid">
+
+      <a href="https://www.google.com/maps/dir//R.+Humberto+I,+50+-+Vila+Mariana,+S%C3%A3o+Paulo+-+SP,+04018-030/@-23.0093382,-46.4761611,427285m/data=!3m2!1e3!5s0x98c0023ae64941:0x4d69340f663facc5!4m8!4m7!1m0!1m5!1m1!1s0x94ce598fdab50407:0xe57680b6a148f1e7!2m2!1d-46.6431103!2d-23.5804294?entry=ttu&g_ep=EgoyMDI1MDkxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="loc-card">
+        <div class="loc-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <span class="loc-label">Localização<br>São Paulo — SP</span>
+      </a>
+
+      <a href="https://www.google.com/maps/search/Calle+Nu%C3%B1ez+de+Balboa,+Num+56+Planta+SM,+Puerta+2+-+28001+Madrid/@40.4285842,-3.6849683,587m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="loc-card">
+        <div class="loc-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <span class="loc-label">Localização<br>Madrid — ES</span>
+      </a>
+
+    </div>
+
+    <!-- ── RODAPÉ ── -->
+    <div class="footer">
+      <p>© 2026 MedForce · Todos os direitos reservados</p>
+      <p style="margin-top:6px;"><a href="https://medforce.com.br/" target="_blank">medforce.com.br</a></p>
+    </div>
+
+  </div>
+</body>
+</html>
